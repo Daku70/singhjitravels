@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Sphere, MeshDistortMaterial, Float } from '@react-three/drei';
+import { OrbitControls, Float } from '@react-three/drei';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -16,16 +16,14 @@ const AnimatedSphere = () => {
 
   return (
     <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
-      <Sphere ref={meshRef} args={[1, 100, 200]} scale={1.2}>
-        <MeshDistortMaterial
+      <mesh ref={meshRef} scale={1.2}>
+        <sphereGeometry args={[1, 32, 32]} />
+        <meshStandardMaterial
           color="#8B5CF6"
-          attach="material"
-          distort={0.3}
-          speed={1.5}
           roughness={0.4}
           metalness={0.8}
         />
-      </Sphere>
+      </mesh>
     </Float>
   );
 };

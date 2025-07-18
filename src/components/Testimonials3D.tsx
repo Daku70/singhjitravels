@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { Text, Float, OrbitControls } from '@react-three/drei';
+import { Float, OrbitControls } from '@react-three/drei';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -50,15 +50,6 @@ const Testimonials3D = () => {
               opacity={0.7}
             />
           </mesh>
-          <Text
-            position={[0, 0, 0.81]}
-            fontSize={0.3}
-            color="white"
-            anchorX="center"
-            anchorY="middle"
-          >
-            ★★★★★
-          </Text>
         </TestimonialBubble>
 
         <TestimonialBubble position={[0, 1, -1]} scale={1} delay={1}>
@@ -72,15 +63,6 @@ const Testimonials3D = () => {
               opacity={0.8}
             />
           </mesh>
-          <Text
-            position={[0, 0, 0.61]}
-            fontSize={0.2}
-            color="white"
-            anchorX="center"
-            anchorY="middle"
-          >
-            "Amazing!"
-          </Text>
         </TestimonialBubble>
 
         <TestimonialBubble position={[3, -0.5, 0]} scale={0.9} delay={2}>
@@ -94,15 +76,6 @@ const Testimonials3D = () => {
               opacity={0.7}
             />
           </mesh>
-          <Text
-            position={[0, 0, 0.71]}
-            fontSize={0.25}
-            color="white"
-            anchorX="center"
-            anchorY="middle"
-          >
-            "Perfect!"
-          </Text>
         </TestimonialBubble>
 
         {/* Floating hearts */}
