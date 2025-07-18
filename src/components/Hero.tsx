@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
 import heroImage from "@/assets/hero-travel.jpg";
+import Globe3D from "@/components/Globe3D";
+import TravelIcons3D from "@/components/TravelIcons3D";
 
 const Hero = () => {
   return (
@@ -13,6 +15,7 @@ const Hero = () => {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-hero"></div>
+        <TravelIcons3D />
       </div>
 
       {/* Content */}
@@ -51,20 +54,43 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right Column - Statistics */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-8">
-            <div className="text-center lg:text-left bg-background/10 backdrop-blur-sm rounded-2xl p-6 border border-border/20">
-              <div className="text-4xl font-bold text-primary mb-2">10000</div>
-              <div className="text-muted-foreground">Satisfied travelers</div>
+          {/* Right Column - 3D Globe */}
+          <div className="relative h-96 lg:h-full">
+            <Globe3D />
+            
+            {/* Overlay stats for mobile */}
+            <div className="lg:hidden absolute bottom-0 left-0 right-0">
+              <div className="grid grid-cols-3 gap-4 p-4">
+                <div className="text-center bg-background/10 backdrop-blur-sm rounded-2xl p-4 border border-border/20">
+                  <div className="text-2xl font-bold text-primary mb-1">10000</div>
+                  <div className="text-xs text-muted-foreground">Satisfied travelers</div>
+                </div>
+                <div className="text-center bg-background/10 backdrop-blur-sm rounded-2xl p-4 border border-border/20">
+                  <div className="text-2xl font-bold text-primary mb-1">5000</div>
+                  <div className="text-xs text-muted-foreground">Memorable journeys</div>
+                </div>
+                <div className="text-center bg-background/10 backdrop-blur-sm rounded-2xl p-4 border border-border/20">
+                  <div className="text-2xl font-bold text-primary mb-1">2500</div>
+                  <div className="text-xs text-muted-foreground">Happy customer feedback</div>
+                </div>
+              </div>
             </div>
-            <div className="text-center lg:text-left bg-background/10 backdrop-blur-sm rounded-2xl p-6 border border-border/20">
-              <div className="text-4xl font-bold text-primary mb-2">5000</div>
-              <div className="text-muted-foreground">Memorable journeys</div>
-            </div>
-            <div className="text-center lg:text-left bg-background/10 backdrop-blur-sm rounded-2xl p-6 border border-border/20">
-              <div className="text-4xl font-bold text-primary mb-2">2500</div>
-              <div className="text-muted-foreground">Happy customer feedback</div>
-            </div>
+          </div>
+        </div>
+
+        {/* Desktop Statistics - Positioned absolutely */}
+        <div className="hidden lg:block absolute right-8 top-1/2 transform -translate-y-1/2 space-y-6">
+          <div className="text-center lg:text-left bg-background/10 backdrop-blur-sm rounded-2xl p-6 border border-border/20">
+            <div className="text-4xl font-bold text-primary mb-2">10000</div>
+            <div className="text-muted-foreground">Satisfied travelers</div>
+          </div>
+          <div className="text-center lg:text-left bg-background/10 backdrop-blur-sm rounded-2xl p-6 border border-border/20">
+            <div className="text-4xl font-bold text-primary mb-2">5000</div>
+            <div className="text-muted-foreground">Memorable journeys</div>
+          </div>
+          <div className="text-center lg:text-left bg-background/10 backdrop-blur-sm rounded-2xl p-6 border border-border/20">
+            <div className="text-4xl font-bold text-primary mb-2">2500</div>
+            <div className="text-muted-foreground">Happy customer feedback</div>
           </div>
         </div>
       </div>

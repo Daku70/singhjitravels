@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 import { useState } from "react";
+import Testimonials3D from "@/components/Testimonials3D";
 
 const Testimonials = () => {
   const testimonials = [
@@ -45,6 +46,11 @@ const Testimonials = () => {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Real experiences from real travelers who have journeyed with us across India.
           </p>
+        </div>
+
+        {/* 3D Testimonials Preview */}
+        <div className="mb-16">
+          <Testimonials3D />
         </div>
 
         <div className="relative max-w-4xl mx-auto">

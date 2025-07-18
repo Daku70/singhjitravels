@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Car, MapPin, Lightbulb, Shield } from "lucide-react";
+import Services3D from "@/components/Services3D";
 
 const Services = () => {
   const services = [
@@ -44,6 +45,11 @@ const Services = () => {
             Comprehensive travel solutions designed to make your journey unforgettable, 
             comfortable, and hassle-free across India.
           </p>
+        </div>
+
+        {/* 3D Services Preview */}
+        <div className="mb-16">
+          <Services3D />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
