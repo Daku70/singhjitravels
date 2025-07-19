@@ -7,17 +7,17 @@ import Testimonials3D from "@/components/Testimonials3D";
 const Testimonials = () => {
   const testimonials = [
     {
-      name: "Robert Phillman",
+      name: "Ramesh Varma",
       review: "Traveling with SINGHJI TOUR AND TRAVELS was a fantastic choice. They made the planning process easy and enjoyable. Grateful for their excellent service!",
       rating: 5
     },
     {
-      name: "Julianna Rand", 
+      name: "Sonali Sharma", 
       review: "SINGHJI TOUR AND TRAVELS made my trip unforgettable! Their team was incredibly helpful in arranging everything, and the vehicle was perfect for our family outing.",
       rating: 5
     },
     {
-      name: "Lucas Evans",
+      name: "Karan Singh",
       review: "I had an amazing experience with SINGHJI TOUR AND TRAVELS. Their staff was attentive, and they truly catered to my travel needs. Highly recommend their services!",
       rating: 5
     }
