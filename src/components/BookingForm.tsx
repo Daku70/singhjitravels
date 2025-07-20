@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -38,13 +40,50 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 const BookingForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+  
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("Booking form submitted:", data);
-    // Handle form submission here
+  const onSubmit = async (data: FormData) => {
+    setIsLoading(true);
+    
+    try {
+      const { error } = await supabase
+        .from('bookings')
+        .insert([
+          {
+            from_location: data.from,
+            to_location: data.to,
+            travel_date: data.date.toISOString().split('T')[0],
+            person_name: data.name,
+            phone_number: data.phone,
+            email: data.email,
+          }
+        ]);
+
+      if (error) {
+        throw error;
+      }
+
+      toast({
+        title: "Booking submitted successfully!",
+        description: "We'll contact you soon with details about your journey.",
+      });
+      
+      form.reset();
+    } catch (error) {
+      console.error('Error submitting booking:', error);
+      toast({
+        title: "Error submitting booking",
+        description: "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -184,9 +223,10 @@ const BookingForm = () => {
 
                 <Button 
                   type="submit" 
+                  disabled={isLoading}
                   className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90"
                 >
-                  Submit Booking Request
+                  {isLoading ? "Submitting..." : "Submit Booking Request"}
                 </Button>
               </form>
             </Form>
