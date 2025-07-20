@@ -6,8 +6,8 @@ const Services = () => {
   const services = [
     {
       icon: Car,
-      title: "Vehicle rentals",
-      description: "With a diverse fleet of vehicles, we offer flexible rental options tailored to your travel needs, ensuring you have the perfect ride for your journey.",
+      title: "Buy 2nd hand vehicles",
+      description: "We offer quality pre-owned vehicles with complete documentation and inspection. Find the perfect second-hand car or truck that fits your budget and requirements.",
       color: "text-blue-400"
     },
     {
@@ -17,9 +17,9 @@ const Services = () => {
       color: "text-green-400"
     },
     {
-      icon: Lightbulb,
-      title: "Local insights",
-      description: "We share valuable tips and recommendations on local attractions, dining, and hidden gems, helping you immerse yourself in the rich culture and beauty of each destination.",
+      icon: Car,
+      title: "Truck, car rentals",
+      description: "From compact cars to heavy-duty trucks, we provide reliable rental services for all your transportation needs, whether for personal use or commercial purposes.",
       color: "text-yellow-400"
     },
     {
