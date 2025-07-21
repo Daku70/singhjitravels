@@ -45,6 +45,13 @@ const BookingForm = () => {
   
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      from: "",
+      to: "",
+      name: "",
+      phone: "",
+      email: "",
+    },
   });
 
   const onSubmit = async (data: FormData) => {
