@@ -68,6 +68,24 @@ const BookingForm = () => {
         throw error;
       }
 
+      // Send email notification
+      try {
+        await supabase.functions.invoke('send-booking-notification', {
+          body: {
+            from_location: data.from,
+            to_location: data.to,
+            travel_date: data.date.toISOString().split('T')[0],
+            person_name: data.name,
+            phone_number: data.phone,
+            email: data.email,
+            created_at: new Date().toISOString(),
+          },
+        });
+      } catch (emailError) {
+        console.error('Error sending notification email:', emailError);
+        // Don't fail the booking if email fails
+      }
+
       toast({
         title: "Booking submitted successfully!",
         description: "We'll contact you soon with details about your journey.",
