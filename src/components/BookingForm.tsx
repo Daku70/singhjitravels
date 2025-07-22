@@ -122,16 +122,16 @@ const BookingForm = () => {
 
       {/* Company Title */}
       <div className="relative z-10 text-center mb-12">
-        <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-violet-400 via-purple-500 via-fuchsia-500 to-pink-500 bg-clip-text text-transparent animate-fade-in mb-4 drop-shadow-lg">
+        <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-fade-in mb-4">
           SINGHJI TOUR
         </h1>
-        <h2 className="text-2xl md:text-3xl font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent animate-scale-in drop-shadow-md">
+        <h2 className="text-2xl md:text-3xl font-semibold text-foreground/90 animate-scale-in">
           & TRAVELS
         </h2>
       </div>
 
       <div className="relative z-10 max-w-2xl mx-auto animate-fade-in">
-        <Card className="shadow-2xl hover-scale bg-gradient-to-br from-background/95 via-primary/5 to-background/95 backdrop-blur-md border border-primary/30 shadow-[0_0_50px_rgba(139,69,255,0.3)]">
+        <Card className="shadow-2xl hover-scale bg-background/90 backdrop-blur-sm border-primary/20">
           <CardHeader>
             <CardTitle className="text-3xl font-bold text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent animate-scale-in">
               Book Your Journey
