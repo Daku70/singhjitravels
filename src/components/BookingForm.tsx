@@ -25,7 +25,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Bus3D from "@/components/Bus3D";
+import TravelIcons3D from "@/components/TravelIcons3D";
 
 const formSchema = z.object({
   from: z.string().min(1, "Origin location is required"),
@@ -116,7 +116,7 @@ const BookingForm = () => {
     <section className="relative pt-24 pb-20 px-4 min-h-screen overflow-hidden">
       {/* Fixed 3D Background */}
       <div className="fixed inset-0 z-0">
-        <Bus3D />
+        <TravelIcons3D />
         <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
       </div>
 
