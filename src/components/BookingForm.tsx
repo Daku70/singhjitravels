@@ -117,7 +117,7 @@ const BookingForm = () => {
       {/* Fixed 3D Background */}
       <div className="fixed inset-0 z-0">
         <TravelIcons3D />
-        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-background/70"></div>
       </div>
 
       {/* Company Title */}
@@ -131,7 +131,7 @@ const BookingForm = () => {
       </div>
 
       <div className="relative z-10 max-w-2xl mx-auto animate-fade-in">
-        <Card className="shadow-2xl hover-scale bg-gradient-to-br from-background/95 via-primary/5 to-background/95 backdrop-blur-md border border-primary/30 shadow-[0_0_50px_rgba(139,69,255,0.3)]">
+        <Card className="shadow-2xl hover-scale bg-background/95 border border-primary/30 shadow-[0_0_50px_rgba(139,69,255,0.3)]">
           <CardHeader>
             <CardTitle className="text-3xl font-bold text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent animate-scale-in">
               Book Your Journey
