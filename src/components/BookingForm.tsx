@@ -112,11 +112,11 @@ const BookingForm = () => {
   };
 
   return (
-    <section className="py-20 px-4">
-      <div className="max-w-2xl mx-auto">
-        <Card className="shadow-2xl">
+    <section className="pt-24 pb-20 px-4">
+      <div className="max-w-2xl mx-auto animate-fade-in">
+        <Card className="shadow-2xl hover-scale">
           <CardHeader>
-            <CardTitle className="text-3xl font-bold text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <CardTitle className="text-3xl font-bold text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent animate-scale-in">
               Book Your Journey
             </CardTitle>
           </CardHeader>
