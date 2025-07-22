@@ -25,7 +25,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import TravelIcons3D from "@/components/TravelIcons3D";
 
 const formSchema = z.object({
   from: z.string().min(1, "Origin location is required"),
@@ -113,25 +112,9 @@ const BookingForm = () => {
   };
 
   return (
-    <section className="relative pt-24 pb-20 px-4 min-h-screen overflow-hidden">
-      {/* Fixed 3D Background */}
-      <div className="fixed inset-0 z-0">
-        <TravelIcons3D />
-        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
-      </div>
-
-      {/* Company Title */}
-      <div className="relative z-10 text-center mb-12">
-        <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-fade-in mb-4">
-          SINGHJI TOUR
-        </h1>
-        <h2 className="text-2xl md:text-3xl font-semibold text-foreground/90 animate-scale-in">
-          & TRAVELS
-        </h2>
-      </div>
-
-      <div className="relative z-10 max-w-2xl mx-auto animate-fade-in">
-        <Card className="shadow-2xl hover-scale bg-background/90 backdrop-blur-sm border-primary/20">
+    <section className="pt-24 pb-20 px-4">
+      <div className="max-w-2xl mx-auto animate-fade-in">
+        <Card className="shadow-2xl hover-scale">
           <CardHeader>
             <CardTitle className="text-3xl font-bold text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent animate-scale-in">
               Book Your Journey
