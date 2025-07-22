@@ -164,15 +164,17 @@ const Bus3D = () => {
   return (
     <div className="absolute inset-0 pointer-events-none">
       <Canvas
-        camera={{ position: [3, 1, 4], fov: 45 }}
+        camera={{ position: [2, 0.5, 3], fov: 60 }}
         style={{ background: 'transparent' }}
       >
-        <ambientLight intensity={0.4} />
-        <pointLight position={[5, 5, 5]} intensity={0.8} color="#8B5CF6" />
-        <pointLight position={[-5, 3, -5]} intensity={0.6} color="#3B82F6" />
-        <directionalLight position={[0, 10, 0]} intensity={0.3} />
+        <ambientLight intensity={0.6} />
+        <pointLight position={[5, 5, 5]} intensity={1.2} color="#8B5CF6" />
+        <pointLight position={[-5, 3, -5]} intensity={0.8} color="#3B82F6" />
+        <directionalLight position={[0, 10, 0]} intensity={0.5} />
         
-        <AnimatedBus />
+        <group position={[0, 0, 0]} scale={[1.5, 1.5, 1.5]}>
+          <AnimatedBus />
+        </group>
         
         {/* Floating particles around bus */}
         {Array.from({ length: 6 }).map((_, i) => (
