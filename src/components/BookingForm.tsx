@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { format } from "date-fns";
-import { CalendarIcon, Check, ChevronsUpDown } from "lucide-react";
+import { CalendarIcon } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
@@ -24,14 +24,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const formSchema = z.object({
@@ -64,9 +56,30 @@ const indianCities = [
 
 const BookingForm = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [openFromCombobox, setOpenFromCombobox] = useState(false);
-  const [openToCombobox, setOpenToCombobox] = useState(false);
+  const [fromSuggestions, setFromSuggestions] = useState<string[]>([]);
+  const [toSuggestions, setToSuggestions] = useState<string[]>([]);
+  const [showFromSuggestions, setShowFromSuggestions] = useState(false);
+  const [showToSuggestions, setShowToSuggestions] = useState(false);
   const { toast } = useToast();
+  
+  const filterCities = (input: string) => {
+    if (!input) return [];
+    return indianCities.filter(city => 
+      city.toLowerCase().includes(input.toLowerCase())
+    ).slice(0, 5);
+  };
+
+  const handleFromChange = (value: string) => {
+    const suggestions = filterCities(value);
+    setFromSuggestions(suggestions);
+    setShowFromSuggestions(suggestions.length > 0 && value.length > 0);
+  };
+
+  const handleToChange = (value: string) => {
+    const suggestions = filterCities(value);
+    setToSuggestions(suggestions);
+    setShowToSuggestions(suggestions.length > 0 && value.length > 0);
+  };
   
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -160,53 +173,36 @@ const BookingForm = () => {
                     control={form.control}
                     name="from"
                     render={({ field }) => (
-                      <FormItem className="flex flex-col">
+                      <FormItem className="relative">
                         <FormLabel>From</FormLabel>
-                        <Popover open={openFromCombobox} onOpenChange={setOpenFromCombobox}>
-                          <PopoverTrigger asChild>
-                            <FormControl>
-                              <Button
-                                variant="outline"
-                                role="combobox"
-                                className={cn(
-                                  "w-full justify-between",
-                                  !field.value && "text-muted-foreground"
-                                )}
+                        <FormControl>
+                          <Input 
+                            placeholder="Origin location" 
+                            {...field} 
+                            onChange={(e) => {
+                              field.onChange(e);
+                              handleFromChange(e.target.value);
+                            }}
+                            onFocus={() => handleFromChange(field.value)}
+                            onBlur={() => setTimeout(() => setShowFromSuggestions(false), 200)}
+                          />
+                        </FormControl>
+                        {showFromSuggestions && (
+                          <div className="absolute top-full left-0 right-0 z-50 bg-popover border border-border rounded-md shadow-lg mt-1">
+                            {fromSuggestions.map((city, index) => (
+                              <div
+                                key={index}
+                                className="px-3 py-2 hover:bg-accent hover:text-accent-foreground cursor-pointer text-sm"
+                                onClick={() => {
+                                  field.onChange(city);
+                                  setShowFromSuggestions(false);
+                                }}
                               >
-                                {field.value || "Select origin city"}
-                                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                              </Button>
-                            </FormControl>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-full p-0" align="start">
-                            <Command>
-                              <CommandInput placeholder="Search cities..." />
-                              <CommandList>
-                                <CommandEmpty>No city found.</CommandEmpty>
-                                <CommandGroup>
-                                  {indianCities.map((city) => (
-                                    <CommandItem
-                                      value={city}
-                                      key={city}
-                                      onSelect={() => {
-                                        field.onChange(city);
-                                        setOpenFromCombobox(false);
-                                      }}
-                                    >
-                                      <Check
-                                        className={cn(
-                                          "mr-2 h-4 w-4",
-                                          city === field.value ? "opacity-100" : "opacity-0"
-                                        )}
-                                      />
-                                      {city}
-                                    </CommandItem>
-                                  ))}
-                                </CommandGroup>
-                              </CommandList>
-                            </Command>
-                          </PopoverContent>
-                        </Popover>
+                                {city}
+                              </div>
+                            ))}
+                          </div>
+                        )}
                         <FormMessage />
                       </FormItem>
                     )}
@@ -216,53 +212,36 @@ const BookingForm = () => {
                     control={form.control}
                     name="to"
                     render={({ field }) => (
-                      <FormItem className="flex flex-col">
+                      <FormItem className="relative">
                         <FormLabel>To</FormLabel>
-                        <Popover open={openToCombobox} onOpenChange={setOpenToCombobox}>
-                          <PopoverTrigger asChild>
-                            <FormControl>
-                              <Button
-                                variant="outline"
-                                role="combobox"
-                                className={cn(
-                                  "w-full justify-between",
-                                  !field.value && "text-muted-foreground"
-                                )}
+                        <FormControl>
+                          <Input 
+                            placeholder="Destination" 
+                            {...field} 
+                            onChange={(e) => {
+                              field.onChange(e);
+                              handleToChange(e.target.value);
+                            }}
+                            onFocus={() => handleToChange(field.value)}
+                            onBlur={() => setTimeout(() => setShowToSuggestions(false), 200)}
+                          />
+                        </FormControl>
+                        {showToSuggestions && (
+                          <div className="absolute top-full left-0 right-0 z-50 bg-popover border border-border rounded-md shadow-lg mt-1">
+                            {toSuggestions.map((city, index) => (
+                              <div
+                                key={index}
+                                className="px-3 py-2 hover:bg-accent hover:text-accent-foreground cursor-pointer text-sm"
+                                onClick={() => {
+                                  field.onChange(city);
+                                  setShowToSuggestions(false);
+                                }}
                               >
-                                {field.value || "Select destination city"}
-                                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                              </Button>
-                            </FormControl>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-full p-0" align="start">
-                            <Command>
-                              <CommandInput placeholder="Search cities..." />
-                              <CommandList>
-                                <CommandEmpty>No city found.</CommandEmpty>
-                                <CommandGroup>
-                                  {indianCities.map((city) => (
-                                    <CommandItem
-                                      value={city}
-                                      key={city}
-                                      onSelect={() => {
-                                        field.onChange(city);
-                                        setOpenToCombobox(false);
-                                      }}
-                                    >
-                                      <Check
-                                        className={cn(
-                                          "mr-2 h-4 w-4",
-                                          city === field.value ? "opacity-100" : "opacity-0"
-                                        )}
-                                      />
-                                      {city}
-                                    </CommandItem>
-                                  ))}
-                                </CommandGroup>
-                              </CommandList>
-                            </Command>
-                          </PopoverContent>
-                        </Popover>
+                                {city}
+                              </div>
+                            ))}
+                          </div>
+                        )}
                         <FormMessage />
                       </FormItem>
                     )}
