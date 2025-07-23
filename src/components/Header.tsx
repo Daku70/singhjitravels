@@ -16,7 +16,7 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <MapPin className="h-8 w-8 text-primary animate-pulse" />
-            <span className="text-xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-fade-in">
+            <span className="text-xl font-bold bg-gradient-to-r from-[hsl(270_91%_65%)] via-[hsl(280_100%_70%)] to-[hsl(262_83%_58%)] bg-clip-text text-transparent animate-fade-in">
               SINGHJI TOUR AND TRAVELS
             </span>
           </div>
