@@ -112,8 +112,15 @@ const BookingForm = () => {
   };
 
   return (
-    <section className="pt-24 pb-20 px-4">
-      <div className="max-w-2xl mx-auto animate-fade-in">
+    <section 
+      className="pt-24 pb-20 px-4 relative min-h-screen bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: "url('https://images.unsplash.com/photo-1469474968028-56623f02e425?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3506&q=80')"
+      }}
+    >
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/50"></div>
+      <div className="max-w-2xl mx-auto animate-fade-in relative z-10">
         <Card className="shadow-2xl hover-scale">
           <CardHeader>
             <CardTitle className="text-3xl font-bold text-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent animate-scale-in">
