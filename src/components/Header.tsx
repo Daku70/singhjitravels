@@ -15,8 +15,10 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <MapPin className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold text-foreground">SINGHJI TOUR</span>
+            <MapPin className="h-8 w-8 text-primary animate-pulse" />
+            <span className="text-xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-fade-in">
+              SINGHJI TOUR AND TRAVELS
+            </span>
           </div>
 
           {/* Desktop Navigation */}
