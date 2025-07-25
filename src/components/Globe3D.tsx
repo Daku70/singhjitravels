@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Float } from '@react-three/drei';
+import { Float } from '@react-three/drei';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -71,12 +71,7 @@ const Globe3D = () => {
         <AnimatedSphere />
         <FloatingElements />
         
-        <OrbitControls 
-          enableZoom={false} 
-          enablePan={false}
-          autoRotate
-          autoRotateSpeed={0.5}
-        />
+        {/* Auto-rotation only, no user interaction */}
       </Canvas>
     </div>
   );

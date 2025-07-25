@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { Float, OrbitControls } from '@react-three/drei';
+import { Float } from '@react-three/drei';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -103,12 +103,7 @@ const Testimonials3D = () => {
           </TestimonialBubble>
         ))}
 
-        <OrbitControls 
-          enableZoom={false} 
-          enablePan={false}
-          autoRotate
-          autoRotateSpeed={0.5}
-        />
+        {/* Removed orbit controls for non-interactive mode */}
       </Canvas>
     </div>
   );
