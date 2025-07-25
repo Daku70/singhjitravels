@@ -1,12 +1,36 @@
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { MapPin, Phone, Menu, X, User, LogOut } from "lucide-react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { User as SupabaseUser } from '@supabase/supabase-js';
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState<SupabaseUser | null>(null);
+
+  useEffect(() => {
+    // Check current session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setUser(session?.user ?? null);
+      }
+    );
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
   };
 
   return (
@@ -40,7 +64,7 @@ const Header = () => {
             </a>
           </nav>
 
-          {/* Contact Button & Mobile Menu Toggle */}
+          {/* Contact Button & Auth Buttons & Mobile Menu Toggle */}
           <div className="flex items-center space-x-4">
             <Button variant="outline" className="hidden sm:flex" asChild>
               <a href="tel:6203765098" className="flex items-center space-x-2">
@@ -48,6 +72,25 @@ const Header = () => {
                 <span>Call Now</span>
               </a>
             </Button>
+            
+            {/* Auth Buttons */}
+            {user ? (
+              <div className="hidden md:flex items-center space-x-2">
+                <Button variant="outline" asChild>
+                  <Link to="/dashboard" className="flex items-center space-x-2">
+                    <User className="h-4 w-4" />
+                    <span>Dashboard</span>
+                  </Link>
+                </Button>
+                <Button variant="ghost" size="icon" onClick={handleSignOut}>
+                  <LogOut className="h-4 w-4" />
+                </Button>
+              </div>
+            ) : (
+              <Button variant="default" className="hidden md:flex" asChild>
+                <Link to="/auth">Sign In</Link>
+              </Button>
+            )}
             
             {/* Mobile menu button */}
             <Button
@@ -106,6 +149,26 @@ const Header = () => {
                   <span>Call Now</span>
                 </a>
               </Button>
+              
+              {/* Mobile Auth Buttons */}
+              {user ? (
+                <div className="flex flex-col space-y-2 w-fit">
+                  <Button variant="outline" asChild>
+                    <Link to="/dashboard" className="flex items-center space-x-2">
+                      <User className="h-4 w-4" />
+                      <span>Dashboard</span>
+                    </Link>
+                  </Button>
+                  <Button variant="ghost" onClick={handleSignOut} className="w-fit">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign Out
+                  </Button>
+                </div>
+              ) : (
+                <Button variant="default" asChild className="w-fit">
+                  <Link to="/auth">Sign In</Link>
+                </Button>
+              )}
             </nav>
           </div>
         )}

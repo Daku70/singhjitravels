@@ -3,8 +3,7 @@ import { Resend } from "npm:resend@2.0.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
-// 🔧 CHANGE THIS EMAIL ADDRESS WHEN NEEDED
-const NOTIFICATION_EMAIL = "amansingharaara@gmail.com";
+const NOTIFICATION_EMAIL = Deno.env.get("NOTIFICATION_EMAIL") || "admin@travelagency.com";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
